@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 app = Flask(__name__)
@@ -7,6 +8,7 @@ result = {}
 
 
 def sentiment(sentence):
+    nltk.download('vader_lexicon')
     sia = SentimentIntensityAnalyzer()
     score = sia.polarity_scores(sentence)
     return score
